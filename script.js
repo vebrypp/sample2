@@ -1,27 +1,63 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const background = document.querySelector('.background');
-    const starsNumb = 1;
+    starFall(true);
+    toggleHeader(true);
 
-    for(let i = 0; i < starsNumb; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
-        background.append(star);
+    function toggleHeader(e) {
+        if(e) {
+            const header = document.querySelector('.header');
+            const togler =  header.querySelector('.header-toggle input');
+
+            togler.addEventListener('change', function() {
+                if(this.checked) {
+                    if(header.classList.contains('hide')) return (header.classList.replace('hide', 'show'));
+                    header.classList.add('show');
+                } else {
+                    header.classList.replace('show', 'hide');
+                };
+            });
+        };
     };
 
-    const stars = document.querySelectorAll('.star');
-    stars.forEach(function(i) {
-        loop();
-        function loop() {
-            const time = 3000;
-            // const time = Math.round(Math.random() * 2000 + 3000);
+    function starFall(e) {
+        if(e) {
+            const background = document.querySelector('.background');
 
-            setTimeout(function() {
-                const top = Math.round(Math.random() * window.innerHeight - window.innerHeight / 3);
-                const left = Math.round(Math.random() * window.innerWidth - window.innerWidth/ 3);
-                i.style.top = top + 'px';
-                i.style.left = left + 'px';
-                loop();
-            }, time);
+            const starLen = 50;
+            
+            for(let i = 0; i < starLen; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                background.appendChild(star);
+            };
+
+            const stars = background.querySelectorAll('.star');
+
+            stars.forEach(function(i) {
+
+                const star = function() {
+                    const randTime = Math.round(Math.random() * 2000);
+                    setTimeout(function() {
+                        moveStar();
+                    }, randTime);
+                };
+                
+                star();
+
+                function moveStar() {
+                    const top = Math.round(Math.random() * window.innerHeight);
+                    const left = Math.round(Math.random() * window.innerWidth);
+                    i.style.top = top + 'px';
+                    i.style.left = left + 'px';
+                    animateStar();
+                };
+                function animateStar() {
+                    i.classList.toggle('animated');
+                    setTimeout(function() {
+                        i.classList.toggle('animated');
+                        star();
+                    }, 3000);
+                };
+            });
         };
-    });
+    };
 });

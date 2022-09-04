@@ -11,12 +11,97 @@ body {
     width: 100vw;
 }
 
+.header {
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 0;
+    position: absolute;
+    width: 100vw;
+    z-index: 0;
+}
+
+.header.show {
+    animation : headerShow 1s ease;
+    height: 100vh;
+    width: 100vw;
+}
+
+.header.hide {
+    animation : headerHide 1s ease;
+    height: 0;
+    width: 100vw;
+}
+
+.header .header-toggle {
+    align-items: center;
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    position: fixed;
+    right: 50px;
+    top: 50px;
+    width: 35px;
+}
+
+.header .header-toggle input{
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+
+.header .header-toggle span {
+    background-color: lightgray;
+    border-radius: 10px;
+    display: block;
+    height: 4px;
+    width: 100%;
+    transition: 1s;
+}
+
+.header .header-toggle span::before, span::after {
+    background-color: lightgray;
+    border-radius: 10px;
+    content: "";
+    height: 4px;
+    left: 0;
+    position: absolute;
+    transform: translateY(-50%);
+    transform-origin: 0 100%;
+    transition: 1s;
+    width: 100%;
+}
+
+.header .header-toggle span::before {
+    top: 25%;
+}
+
+.header .header-toggle span::after {
+    top: 75%;
+}
+
+
+.header .header-toggle input:checked ~ span {
+    width: 0;
+}
+
+.header .header-toggle input:checked ~ span::before {
+    transform: rotate(45deg) scaleX(130%);
+    transform-origin: 10.25px 3px;
+}
+
+.header .header-toggle input:checked ~ span::after {
+    transform: rotate(-45deg) scaleX(130%);
+    transform-origin: 6.25px 0.5px;
+}
+
 .background {
     background-color: black;
     height: 100vh;
     position: absolute;
     overflow: hidden;
     width: 100vw;
+    z-index: -1;
 }
 
 :root {
@@ -24,9 +109,6 @@ body {
 }
 
 .background .star {
-    animation: 
-    tail var(--animation-duration) ease-in-out infinite,
-    shooting var(--animation-duration) ease-in-out infinite;
     animation-delay: 0;
     background: linear-gradient(90deg, rgba(46, 128, 196, 0), rgba(46, 128, 196, 1));
     border-radius: 50%;
@@ -37,8 +119,14 @@ body {
     transform-origin: 0 0;
 }
 
+.background .animated {
+    animation: 
+    tail var(--animation-duration) ease-in-out infinite,
+    shooting var(--animation-duration) ease-in-out infinite;
+}
+
 .background .star::before, .star::after {
-    animation: shine var(--animation-duration) ease-in-out infinite;
+    animation: shine 3s ease-in-out infinite;
     animation-delay: 0;
     background: linear-gradient(90deg, rgba(46, 128, 196, 0), rgba(46, 128, 196, 1), rgba(46, 128, 196, 0));
     border-radius: 50%;
@@ -56,6 +144,26 @@ body {
 
 .background .star::before {
     transform: translate(-50%, -1px) rotateZ(-45deg);
+}
+
+@keyframes headerShow {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 100vh;
+    }
+}
+
+@keyframes headerHide {
+    0% {
+        height: 100vh;
+    }
+
+    100% {
+        height: 0;
+    }
 }
 
 @keyframes tail {
