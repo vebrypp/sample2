@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     stars.forEach(function(i) {
         loop();
         function loop() {
-            const time = 3050;
+            const time = 3000;
             // const time = Math.round(Math.random() * 2000 + 3000);
 
             setTimeout(function() {
