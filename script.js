@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(e) {
             const background = document.querySelector('.background');
 
-            const starLen = 50;
+            const starLen = 30;
             
             for(let i = 0; i < starLen; i++) {
                 const star = document.createElement('div');
