@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: block;
+    overflow: hidden;
+    width: 100vw;
+}
+
+.background {
+    background-color: black;
+    height: 100vh;
+    position: absolute;
+    overflow: hidden;
+    width: 100vw;
+}
+
+:root {
+    --animation-duration: 3000ms;
+}
+
+.background .star {
+    animation: 
+    tail var(--animation-duration) ease-in-out infinite,
+    shooting var(--animation-duration) ease-in-out infinite;
+    animation-delay: 0;
+    background: linear-gradient(90deg, rgba(46, 128, 196, 0), rgba(46, 128, 196, 1));
+    border-radius: 50%;
+    filter: drop-shadow(0 0 5px rgba(46, 128, 196, 1));
+    height: 2px;
+    position: absolute;
+    transform: rotateZ(45deg) translateX(-50%);
+    transform-origin: 0 0;
+}
+
+.background .star::before, .star::after {
+    animation: shine var(--animation-duration) ease-in-out infinite;
+    animation-delay: 0;
+    background: linear-gradient(90deg, rgba(46, 128, 196, 0), rgba(46, 128, 196, 1), rgba(46, 128, 196, 0));
+    border-radius: 50%;
+    content: '';
+    height: 2px;
+    left: 100%;
+    position: absolute;
+    top: 50%;
+    width: 35px;
+}
+
+.background .star::after {
+    transform: translate(-50%, -1px) rotateZ(45deg);
+}
+
+.background .star::before {
+    transform: translate(-50%, -1px) rotateZ(-45deg);
+}
+
+@keyframes tail {
+    0% {
+        width: 0;
+    }
+    30% {
+        width: 150px;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes shooting {
+    0% {
+        transform: rotateZ(45deg) translateX(0);
+    }
+    
+    100% {
+        transform: rotateZ(45deg) translateX(50vw);
+    }
+}
+
+@keyframes shine {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
