@@ -1,6 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     starFall(true);
     toggleHeader(true);
+    animateMenu(true);
+
+    function animateMenu(e) {
+        if(e) {
+            const menu = document.querySelectorAll('.header-menu ul li a');
+
+            menu.forEach(function(i) {
+                i.addEventListener('click', function() {
+                    i.classList.add('animated');
+                });
+            });
+        };
+    };
 
     function toggleHeader(e) {
         if(e) {

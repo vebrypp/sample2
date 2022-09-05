@@ -145,8 +145,33 @@ body {
     filter: drop-shadow(0 0 6px white);
 }
 
-.header .header-menu ul li a:active {
+.header .header-menu ul li .animated {
     animation: slideMenu 1s linear;
+}
+
+.header .header-menu .footer-menu {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    margin-bottom: 50px;
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+}
+
+.header .header-menu .footer-menu .media-social {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.header .header-menu .footer-menu .media-social .icon svg{
+    height: 50px;
+    filter: invert(80%) sepia(1%) saturate(0%) hue-rotate(17deg) brightness(103%) contrast(99%);;
+    width: 50px;
+    padding: 10px;
 }
 
 @keyframes slideMenu {
